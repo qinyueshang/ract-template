@@ -1,4 +1,6 @@
 {
+  "name": "my-app",
+  "version": "0.0.1",
   "description": "",
   "main": "webpack.config.js",
   "sideEffects": ["*.css", "*.less"],
