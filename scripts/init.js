@@ -30,5 +30,5 @@ module.exports = function(
   if (fs.existsSync(templateDir)) {
     fs.copySync(templateDir, appPath);
   }
-  fs.moveSync(path.join(appPath, "node_modules"));
+  fs.removeSync(path.join(appPath, "node_modules"));
 };
