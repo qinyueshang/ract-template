@@ -31,10 +31,7 @@ module.exports = function(
     .name;
   const ownPath = path.join(appPath, "node_modules", ownPackageName);
   const appPackage = require(path.join(appPath, "package.json"));
-  const templateDependencies = require(path.join(
-    ownPath,
-    ".template.dependencies.json"
-  ));
+  const templateDependencies = require(path.join(ownPath, "template.json"));
 
   Object.keys(templateDependencies).map(key => {
     appPackage[key] = templateDependencies[key];
