@@ -11,37 +11,19 @@ module.exports = function(
   originalDirectory,
   templateName
 ) {
-  //   const appPackage = require(path.join(appPath, "package.json"));
-  //   const ownPackageName = require(path.join(__dirname, "..", "package.json"))
-  //     .name;
-  //   const templatePath = path.join(appPath, "node_modules", ownPackageName);
-  //   const templateDir = path.join(templatePath, "template");
-
-  //   appPackage.name = appName;
-
-  //   fs.writeFileSync(
-  //     path.join(appPath, "package.json"),
-  //     JSON.stringify(appPackage, null, 2)
-  //   );
-  //   if (fs.existsSync(templateDir)) {
-  //     fs.copySync(templateDir, appPath);
-  //   }
-
+  const appPackage = require(path.join(appPath, "package.json"));
   const ownPackageName = require(path.join(__dirname, "..", "package.json"))
     .name;
-  const ownPath = path.join(appPath, "node_modules", ownPackageName);
-  const appPackage = require(path.join(appPath, "package.json"));
-  const templateDependencies = require(path.join(ownPath, "template.json"));
+  const templatePath = path.join(appPath, "node_modules", ownPackageName);
+  const templateDir = path.join(templatePath, "template");
 
-  Object.keys(templateDependencies).map(key => {
-    appPackage[key] = templateDependencies[key];
-  });
+  appPackage.name = appName;
 
   fs.writeFileSync(
     path.join(appPath, "package.json"),
     JSON.stringify(appPackage, null, 2)
   );
-
-  const templatePath = path.join(ownPath, "template");
-  fs.copySync(templatePath, appPath);
+  if (fs.existsSync(templateDir)) {
+    fs.copySync(templateDir, appPath);
+  }
 };
