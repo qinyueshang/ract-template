@@ -11,17 +11,18 @@ module.exports = function(
   originalDirectory,
   templateName
 ) {
-  const appPackage = require(path.join(appPath, "package.json"));
+  // const appPackage = require(path.join(appPath, "package.json"));
   const ownPackageName = require(path.join(__dirname, "..", "package.json"))
     .name;
   const templatePath = path.join(appPath, "node_modules", ownPackageName);
   const templateDir = path.join(templatePath, "template");
+  const templateJson = require(path.join(templatePath, "template.json"));
 
-  appPackage.name = appName;
+  templateJson.name = appName;
 
   fs.writeFileSync(
     path.join(appPath, "package.json"),
-    JSON.stringify(appPackage, null, 2)
+    JSON.stringify(templateJson, null, 2)
   );
   if (fs.existsSync(templateDir)) {
     fs.copySync(templateDir, appPath);
