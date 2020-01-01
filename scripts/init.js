@@ -11,15 +11,18 @@ module.exports = function(
   originalDirectory,
   templateName
 ) {
-  // const appPackage = require(path.join(appPath, "package.json"));
+  const appPackage = require(path.join(appPath, "package.json"));
   const ownPackageName = require(path.join(__dirname, "..", "package.json"))
     .name;
   const templatePath = path.join(appPath, "node_modules", ownPackageName);
   const templateDir = path.join(templatePath, "template");
   const templateJson = require(path.join(templatePath, "template.json"));
-
-  templateJson.name = appName;
-
+  console.log(
+    `Installing ${chalk.cyan(appName)} ${chalk.cyan(appPackage.name)}...`
+  );
+  templateJson.name = appPackage.name;
+  templateJson.version = appPackage.version;
+  templateJson.description = appPackage.description;
   fs.writeFileSync(
     path.join(appPath, "package.json"),
     JSON.stringify(templateJson, null, 2)
@@ -27,4 +30,5 @@ module.exports = function(
   if (fs.existsSync(templateDir)) {
     fs.copySync(templateDir, appPath);
   }
+  fs.moveSync(path.join(appPath, "node_modules"));
 };
