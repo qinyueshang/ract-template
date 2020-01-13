@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "sideEffects": ["*.css", "*.less"],
   "scripts": {
-    "start": "webpack-dev-server   --config build/webpack.dev.config.js",
+    "start": "webpack-dev-server   --config build/webpack.dev.config.js --open",
     "b": "webpack --progress --config build/webpack.pro.config.js ",
     "build": "npm run b --production"
   },
