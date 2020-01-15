@@ -31,7 +31,6 @@
         //     {
         //         "option": "value",
         //         "generateScopedName": "[local]-[hash:base64: 10]",
-        //         "context": "path.join(__dirname, '.')",
         //         "exclude": "node_modules",
         //         "filetypes": {
         //             ".less": {

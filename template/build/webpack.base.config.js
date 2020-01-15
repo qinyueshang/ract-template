@@ -1,8 +1,8 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const webpack = require("webpack");
+//const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+//const webpack = require("webpack");
 
 const { webpackConfig } = require("../config");
 const util = require("./util");
@@ -85,26 +85,7 @@ module.exports = {
                     )}`
                 ],
                 include: [APP_PATH],
-                exclude: [
-                    path.resolve(
-                        APP_PATH,
-                        "page",
-                        "RedEnvelope",
-                        "rain",
-                        "resource",
-                        "img",
-                        "all.png"
-                    ),
-                    path.resolve(
-                        APP_PATH,
-                        "page",
-                        "RedEnvelope",
-                        "rain",
-                        "resource",
-                        "img",
-                        "loading.png"
-                    )
-                ]
+                exclude: []
             },
             {
                 test: /\.json/,
