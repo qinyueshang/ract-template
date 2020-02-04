@@ -4,14 +4,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 //const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 //const webpack = require("webpack");
 
-const { webpackConfig } = require("../config");
+const {
+    webpackConfig
+} = require("../config");
 const util = require("./util");
 
 const ROOT_PATH = path.resolve(__dirname, "../");
 const APP_PATH = path.resolve(ROOT_PATH, "src");
 module.exports = {
     entry: {
-        app: ["babel-polyfill", APP_PATH + "/main.js"]
+        app: ["@babel/polyfill", APP_PATH + "/main.js"]
     },
     output: {
         path: webpackConfig.buildPath,
@@ -27,12 +29,10 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js", ".jsx", ".less", ".png", ".json"]
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(css|less)?$/,
                 // include: [APP_PATH],
-                use: [
-                    {
+                use: [{
                         loader: MiniCssExtractPlugin.loader,
                         options: {
                             hmr: webpackConfig.isDev
