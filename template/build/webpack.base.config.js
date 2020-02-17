@@ -1,8 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-//const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-//const webpack = require("webpack");
+const webpack = require("webpack");
 
 const {
     webpackConfig
@@ -64,11 +63,11 @@ module.exports = {
                 include: [APP_PATH],
                 use: ["babel-loader"]
             },
-            {
-                test: /\.tsx?$/,
-                include: [APP_PATH],
-                use: ["babel-loader", "ts-loader?transpileOnly=true"]
-            },
+            // {
+            //     test: /\.tsx?$/,
+            //     include: [APP_PATH],
+            //     use: ["babel-loader", "ts-loader?transpileOnly=true"]
+            // },
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 use: [
@@ -107,6 +106,11 @@ module.exports = {
                 removeComments: true,
                 collapseWhitespace: true
             }
+        }),
+        new webpack.DefinePlugin({
+            __VERSION__: JSON.stringify(webpackConfig.version),
+            __DEV__: webpackConfig.isDev,
+            // __BASEURL__: JSON.stringify('/'),
         }),
         new MiniCssExtractPlugin({
             filename: util.assetsPath("css/[name].[chunkHash:7].css"),
